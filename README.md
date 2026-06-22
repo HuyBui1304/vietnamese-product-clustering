@@ -13,17 +13,17 @@ Ba thuat toan phan cum duoc danh gia la K-Means, DBSCAN va Gaussian Mixture Mode
 Bang sau tong hop ket qua cua ba cach bieu dien van ban. Silhouette, CH, NMI,
 ARI va Purity cang cao cang tot; DBI cang thap cang tot.
 
-| Bieu dien | Mo hinh | K | Silhouette | DBI | CH | NMI | ARI | Purity |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| TF-IDF + SVD | K-Means | 16 | 0.297 | 2.510 | 1328.53 | 0.902 | 0.864 | 0.924 |
-| TF-IDF + SVD | DBSCAN | - | 0.986 | 0.116 | 16175.46 | 0.092 | 0.003 | 0.156 |
-| TF-IDF + SVD | GMM | 16 | 0.276 | 2.784 | 1275.06 | 0.835 | 0.748 | 0.862 |
-| PhoBERT | K-Means | 12 | 0.205 | 2.299 | 2418.46 | 0.548 | 0.378 | 0.533 |
-| PhoBERT | DBSCAN | - | 0.556 | 0.837 | 48.36 | 0.006 | 0.001 | 0.111 |
-| PhoBERT | GMM | 4 | 0.264 | 2.182 | 4331.95 | 0.300 | 0.116 | 0.268 |
-| Multilingual E5 | K-Means | 8 | 0.166 | 2.855 | 1471.18 | 0.851 | 0.636 | 0.658 |
-| Multilingual E5 | DBSCAN | - | 0.670 | 0.844 | 275.12 | 0.758 | 0.528 | 1.000 |
-| Multilingual E5 | GMM | 10 | 0.183 | 3.005 | 1360.81 | **0.913** | **0.820** | 0.792 |
+| Bieu dien | Mo hinh | Silhouette | DBI | CH | NMI | ARI | Purity |
+|---|---|---:|---:|---:|---:|---:|---:|
+| TF-IDF + SVD | K-Means | 0.297 | 2.510 | 1328.53 | 0.902 | 0.864 | 0.924 |
+| TF-IDF + SVD | DBSCAN | 0.986 | 0.116 | 16175.46 | 0.092 | 0.003 | 0.156 |
+| TF-IDF + SVD | GMM | 0.276 | 2.784 | 1275.06 | 0.835 | 0.748 | 0.862 |
+| PhoBERT | K-Means | 0.205 | 2.299 | 2418.46 | 0.548 | 0.378 | 0.533 |
+| PhoBERT | DBSCAN | 0.556 | 0.837 | 48.36 | 0.006 | 0.001 | 0.111 |
+| PhoBERT | GMM | 0.264 | 2.182 | 4331.95 | 0.300 | 0.116 | 0.268 |
+| Multilingual E5 | K-Means | 0.166 | 2.855 | 1471.18 | 0.851 | 0.636 | 0.658 |
+| Multilingual E5 | DBSCAN | 0.670 | 0.844 | 275.12 | 0.758 | 0.528 | 1.000 |
+| Multilingual E5 | GMM | 0.183 | 3.005 | 1360.81 | **0.913** | **0.820** | 0.792 |
 
 Xet theo nhan tham chieu, GMM tren Multilingual E5 dat NMI va ARI cao nhat.
 K-Means tren TF-IDF + SVD dat Purity 0.924, dong thoi cho ket qua can bang
