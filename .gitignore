@@ -1,0 +1,54 @@
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# R / RStudio state
+.RData
+.Rhistory
+.Ruserdata
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# Python and Jupyter state
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Raw and generated datasets kept outside Git
+/mota*.csv
+/description*.csv
+/auto_english_candidates*.csv
+/social_networking/**/description*.csv
+
+# Generated embeddings, models, metadata, and clustering assignments
+*.npy
+*.npz
+*.parquet
+*.joblib
+/social_networking/**/outputs*/
+/social_networking/**/vncorenlp/
+
+# Generated reports and plots
+*.png
+*.pdf
+*.html
+coverage/
+dist/
+build/

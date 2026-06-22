@@ -1,0 +1,6 @@
+readr
+dplyr
+purrr
+stringi
+stopwords
+hunspell

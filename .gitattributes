@@ -1,0 +1,15 @@
+* text=auto eol=lf
+*.R text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.csv text eol=lf
+*.ipynb text eol=lf
+
+# Treat research artefacts as binary if they are force-added.
+*.jar binary
+*.joblib binary
+*.npy binary
+*.npz binary
+*.parquet binary
+*.xz binary
+*.gz binary
