@@ -1,19 +1,19 @@
 # Vietnamese Product Clustering
 
-Du an so sanh ba cach bieu dien van ban de phan cum mo ta san pham:
+Dự án so sánh ba cách biểu diễn văn bản để phân cụm mô tả sản phẩm:
 
-- TF-IDF ket hop Truncated SVD
+- TF-IDF kết hợp Truncated SVD
 - PhoBERT (`vinai/phobert-large`)
-- E5 da ngon ngu (`intfloat/multilingual-e5-large`)
+- E5 đa ngôn ngữ (`intfloat/multilingual-e5-large`)
 
-Ba thuat toan phan cum duoc danh gia la K-Means, DBSCAN va Gaussian Mixture Model. Notebook chinh luu toan bo quy trinh tao embedding, tim tham so va tinh cac chi so Silhouette, Davies-Bouldin, Calinski-Harabasz, NMI, ARI va Purity.
+Ba thuật toán phân cụm được đánh giá là K-Means, DBSCAN và Gaussian Mixture Model. Notebook chính lưu toàn bộ quy trình tạo embedding, tìm tham số và tính các chỉ số Silhouette, Davies-Bouldin, Calinski-Harabasz, NMI, ARI và Purity.
 
-## Ket qua
+## Kết quả
 
-Bang sau tong hop ket qua cua ba cach bieu dien van ban. Silhouette, CH, NMI,
-ARI va Purity cang cao cang tot; DBI cang thap cang tot.
+Bảng sau tổng hợp kết quả của ba cách biểu diễn văn bản. Silhouette, CH, NMI,
+ARI và Purity càng cao càng tốt; DBI càng thấp càng tốt.
 
-| Bieu dien | Mo hinh | Silhouette | DBI | CH | NMI | ARI | Purity |
+| Biểu diễn | Mô hình | Silhouette | DBI | CH | NMI | ARI | Purity |
 |---|---|---:|---:|---:|---:|---:|---:|
 | TF-IDF + SVD | K-Means | 0.297 | 2.510 | 1328.53 | 0.902 | 0.864 | 0.924 |
 | TF-IDF + SVD | DBSCAN | 0.986 | 0.116 | 16175.46 | 0.092 | 0.003 | 0.156 |
@@ -25,39 +25,39 @@ ARI va Purity cang cao cang tot; DBI cang thap cang tot.
 | Multilingual E5 | DBSCAN | 0.670 | 0.844 | 275.12 | 0.758 | 0.528 | 1.000 |
 | Multilingual E5 | GMM | 0.183 | 3.005 | 1360.81 | **0.913** | **0.820** | 0.792 |
 
-Xet theo nhan tham chieu, GMM tren Multilingual E5 dat NMI va ARI cao nhat.
-K-Means tren TF-IDF + SVD dat Purity 0.924, dong thoi cho ket qua can bang
-tot tren ca ba chi so NMI, ARI va Purity. Ket qua DBSCAN can duoc doc than
-trong: diem noi tai cao khong dong nghia voi kha nang khoi phuc cac nhom san
-pham, nhu the hien o DBSCAN tren TF-IDF + SVD.
+Xét theo nhãn tham chiếu, GMM trên Multilingual E5 đạt NMI và ARI cao nhất.
+K-Means trên TF-IDF + SVD đạt Purity 0.924, đồng thời cho kết quả cân bằng
+tốt trên cả ba chỉ số NMI, ARI và Purity. Kết quả DBSCAN cần được đọc thận
+trọng: điểm nội tại cao không đồng nghĩa với khả năng khôi phục các nhóm sản
+phẩm, như thể hiện ở DBSCAN trên TF-IDF + SVD.
 
-So lieu day du duoc luu tai:
+Số liệu đầy đủ được lưu tại:
 
 - `social_networking/traditional/evaluation_traditional.csv`
 - `social_networking/pho_bert/clustering/evaluation_phobert.csv`
 - `social_networking/multilingual/clustering/evaluation_multilingual.csv`
 
-Du lieu goc, embedding, model da fit va cac file trung gian khong duoc dua len
-Git vi co kich thuoc lon va co the tai tao. Chung duoc loai bo boi `.gitignore`.
+Dữ liệu gốc, embedding, model đã fit và các file trung gian không được đưa lên
+Git vì có kích thước lớn và có thể tái tạo. Chúng được loại bỏ bởi `.gitignore`.
 
-## Cau truc
+## Cấu trúc
 
 ```text
 .
-|-- preprocess.R               # Gop va tien xu ly du lieu chung
-|-- prepare_phobert.R          # Chuan bi du lieu rieng cho PhoBERT
+|-- preprocess.R               # Gộp và tiền xử lý dữ liệu chung
+|-- prepare_phobert.R          # Chuẩn bị dữ liệu riêng cho PhoBERT
 |-- social_networking/
-|   |-- main.ipynb             # Pipeline embedding va phan cum
-|   |-- multilingual/          # Ket qua E5 da ngon ngu
-|   |-- pho_bert/              # Ket qua PhoBERT
-|   `-- traditional/           # Ket qua TF-IDF + SVD
+|   |-- main.ipynb             # Pipeline embedding và phân cụm
+|   |-- multilingual/          # Kết quả E5 đa ngôn ngữ
+|   |-- pho_bert/              # Kết quả PhoBERT
+|   `-- traditional/           # Kết quả TF-IDF + SVD
 |-- requirements.txt           # Dependency Python
 `-- requirements-r.txt         # Dependency R
 ```
 
-## Chuan bi moi truong
+## Chuẩn bị môi trường
 
-Yeu cau Python 3.10+, R 4.2+ va Java 8+ (cho VnCoreNLP).
+Yêu cầu Python 3.10+, R 4.2+ và Java 8+ (cho VnCoreNLP).
 
 ```bash
 python -m venv .venv
@@ -66,37 +66,37 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Cai cac goi R duoc liet ke trong `requirements-r.txt`:
+Cài các gói R được liệt kê trong `requirements-r.txt`:
 
 ```r
 install.packages(readLines("requirements-r.txt"))
 ```
 
-## Du lieu dau vao
+## Dữ liệu đầu vào
 
-Dat `mota1.csv` den `mota14.csv` tai thu muc goc. Moi file can co cac cot:
+Đặt `mota1.csv` đến `mota14.csv` tại thư mục gốc. Mỗi file cần có các cột:
 
 ```text
 category_name,product_name,product_url,description
 ```
 
-Du lieu khong duoc phan phoi kem repo. Nguoi dung tu chiu trach nhiem ve quyen su dung va viec loai bo thong tin nhay cam truoc khi xu ly.
+Dữ liệu không được phân phối kèm repo. Người dùng tự chịu trách nhiệm về quyền sử dụng và việc loại bỏ thông tin nhạy cảm trước khi xử lý.
 
-## Chay pipeline
+## Chạy pipeline
 
-1. Chay `Rscript preprocess.R` de gop du lieu va tao dau vao cho pipeline da ngon ngu/truyen thong.
-2. Mo `prepare_phobert.R` trong RStudio va chay tung pha. Dung sau Pha A, loc thu cong danh sach token trong `auto_english_candidates.csv`, sau do moi chay Pha B va cac buoc DF >= 5. Khong chay toan bo file mot lan vi buoc loc nay can quyet dinh cua nguoi dung.
-3. Mo repo lam thu muc lam viec, sau do chay `social_networking/main.ipynb` theo thu tu cell.
+1. Chạy `Rscript preprocess.R` để gộp dữ liệu và tạo đầu vào cho pipeline đa ngôn ngữ/truyền thống.
+2. Mở `prepare_phobert.R` trong RStudio và chạy từng pha. Dừng sau Pha A, lọc thủ công danh sách token trong `auto_english_candidates.csv`, sau đó mới chạy Pha B và các bước DF >= 5. Không chạy toàn bộ file một lần vì bước lọc này cần quyết định của người dùng.
+3. Mở repo làm thư mục làm việc, sau đó chạy `social_networking/main.ipynb` theo thứ tự cell.
 
-Notebook chi dung duong dan tuong doi. Cac thu muc output se duoc tao trong `social_networking/` va khong duoc Git theo doi.
+Notebook chỉ dùng đường dẫn tương đối. Các thư mục output sẽ được tạo trong `social_networking/` và không được Git theo dõi.
 
-## Tai lap va gioi han
+## Tái lập và giới hạn
 
-- Seed cua cac mo hinh phan cum duoc dat la `42` o nhung noi thu vien ho tro.
-- Ket qua co the thay doi theo phien ban dependency, phan cung va tap du lieu dau vao.
-- Notebook la quy trinh nghien cuu, khong phai dich vu production.
-- Cac file danh gia trong repo la ket qua cua lan chay hien co; chung khong duoc CI tinh lai vi can du lieu va tai nguyen GPU/CPU lon.
+- Seed của các mô hình phân cụm được đặt là `42` ở những nơi thư viện hỗ trợ.
+- Kết quả có thể thay đổi theo phiên bản dependency, phần cứng và tập dữ liệu đầu vào.
+- Notebook là quy trình nghiên cứu, không phải dịch vụ production.
+- Các file đánh giá trong repo là kết quả của lần chạy hiện có; chúng không được CI tính lại vì cần dữ liệu và tài nguyên GPU/CPU lớn.
 
 ## License
 
-Ma nguon duoc phat hanh theo giay phep MIT. Du lieu, model cua ben thu ba va trong so tai ve tu Hugging Face tuan theo giay phep rieng cua tung nguon.
+Mã nguồn được phát hành theo giấy phép MIT. Dữ liệu, model của bên thứ ba và trọng số tải về từ Hugging Face tuân theo giấy phép riêng của từng nguồn.
